@@ -1,0 +1,15 @@
+.navbar {
+    width: 100vw;
+    height: 10vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border-bottom: 1px solid rgba(216, 216, 216, 0.3); */
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    font-family: sans-serif;
+    color: #fff;
+    box-shadow: -0.5em -0.5em 2em rgba(0, 0, 0, 0.6);
+}
