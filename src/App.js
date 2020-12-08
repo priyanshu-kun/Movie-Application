@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import './App.css';
 import Navbar from "./components/Navbar";
 import Form from "./components/Form";
 import Gallery from "./components/movieGallery";
 import axios from "axios";
+import { ThemeContext } from "./context/Theme.Provider";
 
 // global variables
 const ENDPOINT = "https://imdb8.p.rapidapi.com/title/auto-complete";
@@ -15,6 +16,8 @@ function App() {
   const [response, setResponse] = useState("");
   const [query, setQuery] = useState("");
   const [error, setError] = useState("");
+  const [preloader, setpreloader] = useState(false);
+  const { open, setTheme } = useContext(ThemeContext);
 
 
   useEffect(() => {
@@ -39,6 +42,7 @@ function App() {
         }
         else {
           setResponse(data);
+          setpreloader(false)
         }
 
 
@@ -55,14 +59,17 @@ function App() {
 
 
   const getDataFromForm = (data) => {
+    setpreloader(true)
     setQuery(data);
   }
 
   return (
-    <div className="App">
+    <div className={`App ${open && "light"}`}>
       <Navbar />
       <Form getData={getDataFromForm} query={setQuery} response={setResponse} />
-      <Gallery sendApiResponse={response} error={error} />
+      {
+        preloader ? <div className="preloader"><img src="https://media4.giphy.com/media/xTkcEQACH24SMPxIQg/giphy.gif?cid=ecf05e475cjnl5blc6id4iyvr6sm77ng902lie4o593f0y30&rid=giphy.gif" alt="preloader" /></div> : <Gallery sendApiResponse={response} error={error} />
+      }
     </div>
   );
 }

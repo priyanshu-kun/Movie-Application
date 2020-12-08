@@ -14,4 +14,10 @@
     box-shadow: -0.5em -0.5em 2em rgba(0, 0, 0, 0.6);
     background-color: #282c34;
     z-index: 999999;
+    /* visibility: hidden; */
+}
+
+.light {
+    background-color: #f0fffe;
+    color: #000000;
 }
